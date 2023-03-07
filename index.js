@@ -7,15 +7,12 @@ const io = new Server({
 });
 
 
-let comment;
 io.on("connection", (socket) => {
   console.log("newConnection", socket.id)
 
   socket.on('postComment', (data) => {
-
-    comment = data
-    console.log(comment)
-    socket.broadcast.emit('postCommentServer', comment)
+    console.log(data)
+    socket.broadcast.emit('postCommentServer', data)
   })
 
   socket.on('deleteComment', (data) => {
